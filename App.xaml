@@ -1,0 +1,9 @@
+﻿<Application x:Class="SmartMirror.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SmartMirror"
+             StartupUri="View/SmartMirrorWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
