@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartMirror.ViewModel
+namespace SmartMirror.Model
 {
     public class Coord
     {
