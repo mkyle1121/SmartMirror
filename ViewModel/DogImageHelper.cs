@@ -17,7 +17,7 @@ namespace SmartMirror.ViewModel
         {
             using (var client = new HttpClient())
             {
-                var dogImageResponseJson = await client.GetStringAsync(dogImageApiEndpoint);
+                var dogImageResponseJson =  await client.GetStringAsync(dogImageApiEndpoint);
                 var dogImageResponse = JsonConvert.DeserializeObject<DogImage>(dogImageResponseJson);
                 return dogImageResponse.message;
             }

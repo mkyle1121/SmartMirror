@@ -6,13 +6,16 @@
         xmlns:local="clr-namespace:SmartMirror.View"
         xmlns:viewmodel="clr-namespace:SmartMirror.ViewModel"
         mc:Ignorable="d"
-        Height="800" Width="600"
+        Height="1920" Width="1080"
         AllowsTransparency="True"
         WindowStyle="None"
         Background="Transparent"
         WindowStartupLocation="CenterScreen"
+        WindowState="Normal"
         BorderThickness="0"
-        BorderBrush="White">
+        BorderBrush="White"
+        MouseLeftButtonDown="MainWindowBorder_MouseLeftButtonDown"
+        MouseDoubleClick="Window_MouseDoubleClick">
 
     <Window.DataContext>
         <viewmodel:ViewModel/>
@@ -32,69 +35,98 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="0"
-                    Grid.Column="0">
+                        Grid.Column="0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top">
 
             <TextBlock Text="{Binding CurrentDateTime}"
-                       FontSize="20"
-                       Margin="30"
+                       FontSize="40"
                        Foreground="White"
-                       FontFamily="Broadway"/>
+                       FontFamily="Broadway"
+                       Margin="50 50 0 0"/>
+
+            <TextBlock Text="Message From Michael:"
+                       FontFamily="Broadway"
+                       FontSize="20"
+                       Foreground="White"
+                       Margin="50 50 0 0"/>
+            <TextBlock Text="{Binding MessageFromMichael}"
+                       FontFamily="Broadway"
+                       FontSize="20"
+                       Foreground="White"
+                       Margin="50 0 0 0"/>
 
         </StackPanel>
 
         <StackPanel Grid.Row="0"
                     Grid.Column="1"
-                    HorizontalAlignment="Right">
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top">
 
             <TextBlock Text="{Binding Temp, StringFormat={}{0} °F}"
-                       FontSize="20"
-                       Margin="0 30 30 0"
+                       FontSize="40"
                        Foreground="White"
-                       FontFamily="Broadway"/>
+                       FontFamily="Broadway"
+                       Margin="0 50 50 0"
+                       HorizontalAlignment="Right"/>
 
             <TextBlock Text="{Binding Description}"
-                       FontSize="10"                       
+                       FontSize="30"
                        Foreground="White"
-                       FontFamily="Broadway"/>
-            
-            
+                       FontFamily="Broadway"
+                       Margin="0 0 50 0"/>
 
         </StackPanel>
 
         <StackPanel Grid.Row="1"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
 
             <!--
-            <Image Source="{Binding ApodImage}"
-                   Margin="10"
-                   Opacity=".2">
+                <Image Source="{Binding ApodImage}"
+                       Margin="10"
+                       Opacity=".2">
+                    <Image.OpacityMask>
+                        <RadialGradientBrush>
+                            <GradientStop Color="White"/>
+                            <GradientStop Offset="1.01"/>
+                        </RadialGradientBrush>                    
+                    </Image.OpacityMask>
+                </Image>
+                -->
+
+            <Image Source="/View/Pictures/EarthFromSpaceHD.jpg"
+                   Margin="30"
+                   Opacity=".3">
                 <Image.OpacityMask>
                     <RadialGradientBrush>
-                        <GradientStop Color="White"/>
-                        <GradientStop Offset="1.01"/>
-                    </RadialGradientBrush>                    
-                </Image.OpacityMask>
-            </Image>
-            -->
-
-        </StackPanel>
-
-        <StackPanel Grid.Row="2"
-                    Grid.Column="0">
-
-            <!--    
-            <Image Source="{Binding DogImage}">               
-                <Image.OpacityMask>
-                    <RadialGradientBrush>
-                        <GradientStop Color="White"/>                        
+                        <GradientStop Color="Black"/>
                         <GradientStop Color="Transparent" Offset="1"/>
                     </RadialGradientBrush>
                 </Image.OpacityMask>
             </Image>
-            -->
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="2"
+                    Grid.Column="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+
+            
+            <Image Source="{Binding DogImage}"
+                   MaxHeight="300"
+                   MaxWidth="400">
+                <Image.OpacityMask>
+                    <RadialGradientBrush>
+                        <GradientStop Color="White"/>
+                        <GradientStop Color="Transparent" Offset="1"/>
+                    </RadialGradientBrush>
+                </Image.OpacityMask>
+            </Image>
+            
 
         </StackPanel>
 
@@ -106,36 +138,38 @@
             <TextBlock Text="Our Journey:"
                        Foreground="White"
                        FontFamily="Broadway"
-                       Margin="0 0 30 0"/>
+                       FontSize="20"
+                       Margin="0 0 50 0"/>
 
             <TextBlock Text="{Binding DaysTogether, StringFormat={}{0} Days}"
                        Foreground="White"
                        FontFamily="Broadway"
-                       HorizontalAlignment="Right"
-                       Margin="0 0 30 30"/>
-
-        </StackPanel>
-
-        <StackPanel Grid.Row="3" 
-                    Grid.ColumnSpan="2"
-                    Grid.Column="0"
-                    HorizontalAlignment="Center">
-
-            <TextBlock Foreground="White"
-                       FontFamily="Broadway"
-                       Margin="30"
-                       Text="{Binding CurrentQuote.text}"                       
-                       TextWrapping="Wrap"/>
-
-            <TextBlock Foreground="White"
-                       FontFamily="Broadway"
-                       Margin="0 0 30 0"
-                       Text="{Binding CurrentQuote.author, StringFormat=-{0}}"
+                       FontSize="20"
+                       Margin="0 0 50 50"
                        HorizontalAlignment="Right"/>
 
         </StackPanel>
 
+        <StackPanel Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    Grid.Column="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
 
+            <TextBlock Foreground="White"
+                       FontFamily="Broadway" 
+                       Text="{Binding CurrentQuote.text}"
+                       TextWrapping="Wrap"
+                       FontSize="20"
+                       Margin="50 0 50 0"/>
 
+            <TextBlock Foreground="White"
+                       FontFamily="Broadway"
+                       FontSize="20"
+                       Text="{Binding CurrentQuote.author, StringFormat=-{0}}"
+                       HorizontalAlignment="Right"
+                       Margin="0 0 50 50"/>
+
+        </StackPanel>
     </Grid>
 </Window>
