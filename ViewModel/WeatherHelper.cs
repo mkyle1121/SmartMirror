@@ -19,7 +19,6 @@ namespace SmartMirror.ViewModel
         private static string weatherApiEndpoint = $"https://api.openweathermap.org/data/2.5/weather?q=Austin,us&units=imperial&appid={apiKey}";
         private static string weatherIconApiEndpoint = "http://openweathermap.org/img/wn/";
 
-
         public async Task<WeatherData> GetWeatherAsync()
         {
             using (var client = new HttpClient())

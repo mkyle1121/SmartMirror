@@ -11,7 +11,7 @@
         WindowStyle="None"
         Background="Transparent"
         WindowStartupLocation="CenterScreen"
-        BorderThickness="3"
+        BorderThickness="0"
         BorderBrush="White">
 
     <Window.DataContext>
@@ -23,7 +23,7 @@
             <RowDefinition/>
             <RowDefinition Height="2*"/>
             <RowDefinition/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -56,45 +56,63 @@
                        FontSize="10"                       
                        Foreground="White"
                        FontFamily="Broadway"/>
+            
+            
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+
+            <!--
+            <Image Source="{Binding ApodImage}"
+                   Margin="10"
+                   Opacity=".2">
+                <Image.OpacityMask>
+                    <RadialGradientBrush>
+                        <GradientStop Color="White"/>
+                        <GradientStop Offset="1.01"/>
+                    </RadialGradientBrush>                    
+                </Image.OpacityMask>
+            </Image>
+            -->
 
         </StackPanel>
 
         <StackPanel Grid.Row="2"
-                    Grid.Column="0"
-                    Margin="10">
+                    Grid.Column="0">
 
-            <Border BorderBrush="White"
-                    BorderThickness="5"
-                    CornerRadius="80"
-                    Margin="10"
-                    Height="150">
-                
-            <Image Source="{Binding DogImage}">
-                
+            <!--    
+            <Image Source="{Binding DogImage}">               
                 <Image.OpacityMask>
                     <RadialGradientBrush>
-                        <GradientStop Color="Black"/>
-                        <GradientStop Offset="1"/>
-                        <GradientStop Color="#A0FFFFFF"/>
+                        <GradientStop Color="White"/>                        
+                        <GradientStop Color="Transparent" Offset="1"/>
                     </RadialGradientBrush>
                 </Image.OpacityMask>
             </Image>
-            </Border>
+            -->
 
         </StackPanel>
 
         <StackPanel Grid.Row="2"
                     Grid.Column="1"
                     VerticalAlignment="Bottom"
-                    HorizontalAlignment="Right"
-                    Margin="30">
+                    HorizontalAlignment="Right">
 
-            <TextBlock Foreground="White"
-                       FontFamily="Broadway">
-                <Run Text="Days On This Journey:"/>
-                <LineBreak/>
-                <Run Text="{Binding DaysTogether}"/>
-            </TextBlock>
+            <TextBlock Text="Our Journey:"
+                       Foreground="White"
+                       FontFamily="Broadway"
+                       Margin="0 0 30 0"/>
+
+            <TextBlock Text="{Binding DaysTogether, StringFormat={}{0} Days}"
+                       Foreground="White"
+                       FontFamily="Broadway"
+                       HorizontalAlignment="Right"
+                       Margin="0 0 30 30"/>
 
         </StackPanel>
 
@@ -105,12 +123,15 @@
 
             <TextBlock Foreground="White"
                        FontFamily="Broadway"
-                       Margin="5">
-                <Run Text="{Binding CurrentQuote.text}"/>
-                <LineBreak/>
-                <LineBreak/>
-                <Run Text="{Binding CurrentQuote.author, StringFormat=-{0}}"/>
-            </TextBlock>
+                       Margin="30"
+                       Text="{Binding CurrentQuote.text}"                       
+                       TextWrapping="Wrap"/>
+
+            <TextBlock Foreground="White"
+                       FontFamily="Broadway"
+                       Margin="0 0 30 0"
+                       Text="{Binding CurrentQuote.author, StringFormat=-{0}}"
+                       HorizontalAlignment="Right"/>
 
         </StackPanel>
 

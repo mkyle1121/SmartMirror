@@ -3,10 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
-
 
 namespace SmartMirror.ViewModel
 {
@@ -14,11 +11,12 @@ namespace SmartMirror.ViewModel
     {
 		public ViewModel()
 		{
-			CurrentDateTime = DateTime.Now.ToString("h:mm\r\ndddd, MMMM d");
+            GetCurrentTime();
 			GetWeatherAsync();
             GetDogImageAsync();
             GetQuotesAsync();
             GetDaysTogether();
+            GetApodImage();
         }
 
         private List<Quote> quotes = new List<Quote>();
@@ -90,15 +88,28 @@ namespace SmartMirror.ViewModel
             }
         }
 
-
-
+        private BitmapImage apodImage;
+        public BitmapImage ApodImage
+        {
+            get { return apodImage; }
+            set
+            {
+                apodImage = value;
+                OnPropertyChanged(nameof(ApodImage));
+            }
+        }
 
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-		private async void GetWeatherAsync()
+        private void GetCurrentTime()
+        {
+            CurrentDateTime = DateTime.Now.ToString("h:mm\r\ndddd, MMMM d");
+        }
+
+        private async void GetWeatherAsync()
 		{
             var weatherHelper = new WeatherHelper();
             var weatherData = await weatherHelper.GetWeatherAsync();
@@ -135,6 +146,17 @@ namespace SmartMirror.ViewModel
         {
             var daysTogetherTimespan = DateTime.Now - new DateTime(2018, 05, 25);
             DaysTogether = (int)daysTogetherTimespan.TotalDays;
+        }
+
+        private async void GetApodImage()
+        {
+            var apodHelper = new ApodHelper();
+            var apod = await apodHelper.GetApodImageAsync();
+
+            ApodImage = new BitmapImage();
+            ApodImage.BeginInit();
+            ApodImage.UriSource = new Uri(apod.HDurl);
+            ApodImage.EndInit();          
         }
     }
 }
