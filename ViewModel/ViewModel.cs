@@ -57,7 +57,7 @@ namespace SmartMirror.ViewModel
             }
         }
 
-        private BitmapImage dogImage = new BitmapImage();
+        private BitmapImage dogImage;
         public BitmapImage DogImage
         {
             get { return dogImage; }
@@ -136,9 +136,11 @@ namespace SmartMirror.ViewModel
         //    var dogImageHelper = new DogImageHelper();
         //    var dogImageLocation = await dogImageHelper.GetDogImageAsync();
 
+        //    DogImage = new BitmapImage();
         //    DogImage.BeginInit();
         //    DogImage.UriSource = new Uri(dogImageLocation);
         //    DogImage.EndInit();
+        //    await Task.Delay(10000);         
         //}
 
         private async void GetQuotes()
@@ -194,20 +196,21 @@ namespace SmartMirror.ViewModel
 
         private void UpdateTenSecondTasks()
         {
-            //dispatcher.Invoke(async () =>
-            //{
-            //    while (true)
-            //    {
-            //        var dogImageHelper = new DogImageHelper();
-            //        var dogImageLocation = await dogImageHelper.GetDogImageAsync();
+            var dogImageHelper = new DogImageHelper();
 
-            //        DogImage.BeginInit();
-            //        DogImage.UriSource = new Uri(dogImageLocation);
-            //        DogImage.EndInit();
+            dispatcher.Invoke(async () =>
+            {
+                while (true)
+                {
+                    var dogImageLocation = await dogImageHelper.GetDogImageAsync();
 
-            //        await Task.Delay(10000);
-            //    }
-            //});
+                    DogImage = new BitmapImage();
+                    DogImage.BeginInit();
+                    DogImage.UriSource = new Uri(dogImageLocation);
+                    DogImage.EndInit();
+                    await Task.Delay(10000);
+                }                
+            });
         }
 
         private void UpdateThirtyMinuteTasks()
