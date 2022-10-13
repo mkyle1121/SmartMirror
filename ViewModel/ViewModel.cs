@@ -112,6 +112,19 @@ namespace SmartMirror.ViewModel
             }
         }
 
+        private BitmapImage weatherIcon;
+
+        public BitmapImage WeatherIcon
+        {
+            get { return weatherIcon; }
+            set 
+            {
+                weatherIcon = value;
+                OnPropertyChanged(nameof(WeatherIcon));
+            }
+        }
+
+
 
         private void OnPropertyChanged(string propertyName)
         {
@@ -123,13 +136,20 @@ namespace SmartMirror.ViewModel
             CurrentDateTime = DateTime.Now.ToString("h:mm:ss\r\ndddd, MMMM d");
         }
 
-        private async void GetWeather()
-		{
-            var weatherHelper = new WeatherHelper();
-            var weatherData = await weatherHelper.GetWeatherAsync();
-			Temp = (int)weatherData.main.temp;
-            Description = weatherData.weather.FirstOrDefault().description;
-        }
+  //      private async void GetWeather()
+		//{
+  //          var weatherHelper = new WeatherHelper();
+  //          var weatherData = await weatherHelper.GetWeatherAsync();
+		//	Temp = (int)weatherData.main.temp;
+  //          Description = weatherData.weather.FirstOrDefault().description;
+
+  //          var weatherIconUri = $"http://openweathermap.org/img/wn/{weatherData.weather.FirstOrDefault().icon}.png";
+
+  //          WeatherIcon = new BitmapImage();
+  //          WeatherIcon.BeginInit();
+  //          WeatherIcon.UriSource = new Uri(weatherIconUri);
+  //          WeatherIcon.EndInit();
+  //      }
 
         //private async void GetDogImage()
         //{
@@ -215,11 +235,22 @@ namespace SmartMirror.ViewModel
 
         private void UpdateThirtyMinuteTasks()
         {
-            Task.Run(async () =>
+            dispatcher.Invoke(async () =>
             {
                 while (true)
                 {
-                    GetWeather();
+                    var weatherHelper = new WeatherHelper();
+                    var weatherData = await weatherHelper.GetWeatherAsync();
+                    Temp = (int)weatherData.main.temp;
+                    Description = weatherData.weather.FirstOrDefault().description;
+
+                    var weatherIconUri = $"http://openweathermap.org/img/wn/{weatherData.weather.FirstOrDefault().icon}.png";
+
+                    WeatherIcon = new BitmapImage();
+                    WeatherIcon.BeginInit();
+                    WeatherIcon.UriSource = new Uri(weatherIconUri);
+                    WeatherIcon.EndInit();
+
                     GetQuotes();
                     GetDaysTogether();
                     GetMessageFromMichael();

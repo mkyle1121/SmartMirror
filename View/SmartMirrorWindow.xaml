@@ -50,11 +50,13 @@
                        FontSize="20"
                        Foreground="White"
                        Margin="50 50 0 0"/>
+            
             <TextBlock Text="{Binding MessageFromMichael}"
                        FontFamily="Broadway"
                        FontSize="20"
                        Foreground="White"
-                       Margin="50 0 0 0"/>
+                       Margin="50 10 0 0"
+                       TextWrapping="Wrap"/>
 
         </StackPanel>
 
@@ -63,18 +65,29 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top">
 
-            <TextBlock Text="{Binding Temp, StringFormat={}{0} °F}"
+            <StackPanel Orientation="Horizontal">
+
+                <Image Source="{Binding WeatherIcon}"
+                       Height="100"
+                       Width="100"
+                       Margin="0 50 0 0"
+                        />
+
+                <TextBlock Text="{Binding Temp, StringFormat={}{0} °F}"
                        FontSize="40"
                        Foreground="White"
                        FontFamily="Broadway"
-                       Margin="0 50 50 0"
+                       Margin="0 85 50 0"
                        HorizontalAlignment="Right"/>
+
+            </StackPanel>            
 
             <TextBlock Text="{Binding Description}"
                        FontSize="30"
                        Foreground="White"
                        FontFamily="Broadway"
-                       Margin="0 0 50 0"/>
+                       Margin="0 0 50 0"
+                       HorizontalAlignment="Right"/>
 
         </StackPanel>
 
@@ -85,17 +98,17 @@
                         HorizontalAlignment="Center">
 
             <!--
-                <Image Source="{Binding ApodImage}"
-                       Margin="10"
-                       Opacity=".2">
-                    <Image.OpacityMask>
-                        <RadialGradientBrush>
-                            <GradientStop Color="White"/>
-                            <GradientStop Offset="1.01"/>
-                        </RadialGradientBrush>                    
-                    </Image.OpacityMask>
-                </Image>
-                -->
+            <Image Source="{Binding ApodImage}"
+                    Margin="10"
+                    Opacity=".2">
+                <Image.OpacityMask>
+                    <RadialGradientBrush>
+                        <GradientStop Color="White"/>
+                        <GradientStop Offset="1.01"/>
+                    </RadialGradientBrush>                    
+                </Image.OpacityMask>
+            </Image>
+            -->
 
             <Image Source="/View/Pictures/EarthFromSpaceHD.jpg"
                    Margin="30"
@@ -114,7 +127,7 @@
                     Grid.Column="0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-
+            
             
             <Image Source="{Binding DogImage}"
                    MaxHeight="300"
@@ -126,6 +139,7 @@
                     </RadialGradientBrush>
                 </Image.OpacityMask>
             </Image>
+            
             
 
         </StackPanel>
@@ -144,7 +158,7 @@
             <TextBlock Text="{Binding DaysTogether, StringFormat={}{0} Days}"
                        Foreground="White"
                        FontFamily="Broadway"
-                       FontSize="20"
+                       FontSize="30"
                        Margin="0 0 50 50"
                        HorizontalAlignment="Right"/>
 
