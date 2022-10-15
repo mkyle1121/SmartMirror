@@ -89,6 +89,12 @@
                        Margin="0 0 50 0"
                        HorizontalAlignment="Right"/>
 
+            <Image Source="{Binding AirQualityImage}"
+                   Height="150"
+                   Width="300"
+                   Margin="0 10 50 0"
+                   Opacity=".5"/>
+
         </StackPanel>
 
         <StackPanel Grid.Row="1"
@@ -110,6 +116,22 @@
             </Image>
             -->
 
+            <Image Source="{Binding MoonPhaseImage}"
+                   Width="150"
+                   Height="150"
+                   HorizontalAlignment="Right"
+                   Margin="0 10 50 0"
+                   Opacity=".7"/>
+
+            
+            <TextBlock Text="{Binding MoonPhaseText}"
+                       FontSize="20"
+                       Foreground="White"
+                       FontFamily="Broadway"
+                       HorizontalAlignment="Right"
+                       Margin="0 10 40 0"/>
+            
+
             <Image Source="/View/Pictures/EarthFromSpaceHD.jpg"
                    Margin="30"
                    Opacity=".3">
@@ -127,8 +149,7 @@
                     Grid.Column="0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-            
-            
+
             <Image Source="{Binding DogImage}"
                    MaxHeight="300"
                    MaxWidth="400">
@@ -147,20 +168,21 @@
         <StackPanel Grid.Row="2"
                     Grid.Column="1"
                     VerticalAlignment="Bottom"
-                    HorizontalAlignment="Right">
-
-            <TextBlock Text="Our Journey:"
-                       Foreground="White"
-                       FontFamily="Broadway"
-                       FontSize="20"
-                       Margin="0 0 50 0"/>
+                    HorizontalAlignment="Right">            
 
             <TextBlock Text="{Binding DaysTogether, StringFormat={}{0} Days}"
                        Foreground="White"
                        FontFamily="Broadway"
                        FontSize="30"
+                       Margin="0 0 50 0"
+                       HorizontalAlignment="Center"/>
+
+            <TextBlock Text="On Our Journey"
+                       Foreground="White"
+                       FontFamily="Broadway"
+                       FontSize="20"
                        Margin="0 0 50 50"
-                       HorizontalAlignment="Right"/>
+                       HorizontalAlignment="Center"/>
 
         </StackPanel>
 

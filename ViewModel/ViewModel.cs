@@ -1,4 +1,5 @@
-﻿using SmartMirror.Model;
+﻿using AngleSharp;
+using SmartMirror.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +8,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using AngleSharp.Html.Dom;
+using AngleSharp.Dom;
 
 namespace SmartMirror.ViewModel
 {
@@ -17,6 +20,7 @@ namespace SmartMirror.ViewModel
             UpdateOneSecondTasks();
             UpdateTenSecondTasks();
             UpdateThirtyMinuteTasks();
+            UpdateDailyTasks();
         }
 
         private List<Quote> quotes = new List<Quote>();
@@ -113,7 +117,6 @@ namespace SmartMirror.ViewModel
         }
 
         private BitmapImage weatherIcon;
-
         public BitmapImage WeatherIcon
         {
             get { return weatherIcon; }
@@ -123,6 +126,41 @@ namespace SmartMirror.ViewModel
                 OnPropertyChanged(nameof(WeatherIcon));
             }
         }
+
+        private BitmapImage moonPhaseImage;
+        public BitmapImage  MoonPhaseImage
+        {
+            get { return moonPhaseImage; }
+            set 
+            {
+                moonPhaseImage = value;
+                OnPropertyChanged(nameof(MoonPhaseImage));
+            }
+        }
+
+        private string moonPhaseText;
+        public string MoonPhaseText
+        {
+            get { return moonPhaseText; }
+            set 
+            {
+                moonPhaseText = value;
+                OnPropertyChanged(nameof(MoonPhaseText));
+            }
+        }
+
+        private BitmapImage airQualityImage;
+        public BitmapImage AirQualityImage
+        {
+            get { return airQualityImage; }
+            set
+            {
+                airQualityImage = value;
+                OnPropertyChanged(nameof(AirQualityImage));
+            }
+        }
+
+
 
 
 
@@ -135,33 +173,6 @@ namespace SmartMirror.ViewModel
         {
             CurrentDateTime = DateTime.Now.ToString("h:mm:ss\r\ndddd, MMMM d");
         }
-
-  //      private async void GetWeather()
-		//{
-  //          var weatherHelper = new WeatherHelper();
-  //          var weatherData = await weatherHelper.GetWeatherAsync();
-		//	Temp = (int)weatherData.main.temp;
-  //          Description = weatherData.weather.FirstOrDefault().description;
-
-  //          var weatherIconUri = $"http://openweathermap.org/img/wn/{weatherData.weather.FirstOrDefault().icon}.png";
-
-  //          WeatherIcon = new BitmapImage();
-  //          WeatherIcon.BeginInit();
-  //          WeatherIcon.UriSource = new Uri(weatherIconUri);
-  //          WeatherIcon.EndInit();
-  //      }
-
-        //private async void GetDogImage()
-        //{
-        //    var dogImageHelper = new DogImageHelper();
-        //    var dogImageLocation = await dogImageHelper.GetDogImageAsync();
-
-        //    DogImage = new BitmapImage();
-        //    DogImage.BeginInit();
-        //    DogImage.UriSource = new Uri(dogImageLocation);
-        //    DogImage.EndInit();
-        //    await Task.Delay(10000);         
-        //}
 
         private async void GetQuotes()
         {
@@ -194,6 +205,48 @@ namespace SmartMirror.ViewModel
         //    ApodImage.EndInit();          
         //}
 
+        private async void GetCurrentMoonPhase()
+        {
+            using var client = new HttpClient();
+
+            var moonPhaseRespone = await client.GetStringAsync("https://phasesmoon.com/");
+
+            var config = AngleSharp.Configuration.Default;
+            using var context = BrowsingContext.New(config);
+            using var doc = await context.OpenAsync(req => req.Content(moonPhaseRespone));
+
+            IHtmlImageElement docImages = (IHtmlImageElement)doc.QuerySelectorAll("img").FirstOrDefault();
+
+            MoonPhaseText = docImages.AlternativeText;
+
+            var moonPhaseImageUrl = docImages.Source;      
+            MoonPhaseImage = new BitmapImage();
+            MoonPhaseImage.BeginInit();
+            MoonPhaseImage.UriSource = new Uri(moonPhaseImageUrl);
+            MoonPhaseImage.EndInit();            
+        }
+
+        private async void GetAirQuality()
+        {
+            using var client = new HttpClient();
+
+            var moonPhaseRespone = await client.GetStringAsync("https://www.kvue.com/allergy");
+
+            var config = AngleSharp.Configuration.Default;
+            using var context = BrowsingContext.New(config);
+            using var doc = await context.OpenAsync(req => req.Content(moonPhaseRespone));
+
+            var airQualityImageUrl = doc.QuerySelectorAll<IHtmlImageElement>("img")
+                .Where(element => element.ClassName == "weather-maps__hero-image")
+                .FirstOrDefault()
+                .Source;
+
+            AirQualityImage = new BitmapImage();
+            AirQualityImage.BeginInit();
+            AirQualityImage.UriSource = new Uri(airQualityImageUrl);
+            AirQualityImage.EndInit();
+        }
+
         private async void GetMessageFromMichael()
         {
             using (var client = new HttpClient())
@@ -209,6 +262,7 @@ namespace SmartMirror.ViewModel
                 while(true)
                 {
                     GetCurrentTime();
+
                     await Task.Delay(1000);
                 }
             });            
@@ -223,11 +277,11 @@ namespace SmartMirror.ViewModel
                 while (true)
                 {
                     var dogImageLocation = await dogImageHelper.GetDogImageAsync();
-
                     DogImage = new BitmapImage();
                     DogImage.BeginInit();
                     DogImage.UriSource = new Uri(dogImageLocation);
                     DogImage.EndInit();
+
                     await Task.Delay(10000);
                 }                
             });
@@ -243,19 +297,29 @@ namespace SmartMirror.ViewModel
                     var weatherData = await weatherHelper.GetWeatherAsync();
                     Temp = (int)weatherData.main.temp;
                     Description = weatherData.weather.FirstOrDefault().description;
-
                     var weatherIconUri = $"http://openweathermap.org/img/wn/{weatherData.weather.FirstOrDefault().icon}.png";
-
                     WeatherIcon = new BitmapImage();
                     WeatherIcon.BeginInit();
                     WeatherIcon.UriSource = new Uri(weatherIconUri);
                     WeatherIcon.EndInit();
 
                     GetQuotes();
+                    GetAirQuality();
                     GetDaysTogether();
                     GetMessageFromMichael();
+
                     await Task.Delay(1800000);
                 }
+            });
+        }
+
+        private void UpdateDailyTasks()
+        {
+            dispatcher.Invoke(async () =>
+            {
+                GetCurrentMoonPhase();
+
+                await Task.Delay(86400000);
             });
         }
     }
