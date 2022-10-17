@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using AngleSharp.Html.Dom;
-using AngleSharp.Dom;
 
 namespace SmartMirror.ViewModel
 {
@@ -163,12 +162,12 @@ namespace SmartMirror.ViewModel
 
 
 
-
-
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+
 
         private void GetCurrentTime()
         {
@@ -212,7 +211,7 @@ namespace SmartMirror.ViewModel
 
             var moonPhaseRespone = await client.GetStringAsync("https://phasesmoon.com/");
 
-            var config = AngleSharp.Configuration.Default;
+            var config = Configuration.Default;
             using var context = BrowsingContext.New(config);
             using var doc = await context.OpenAsync(req => req.Content(moonPhaseRespone));
 

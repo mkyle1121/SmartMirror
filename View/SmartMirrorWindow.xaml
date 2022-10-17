@@ -90,8 +90,6 @@
                        HorizontalAlignment="Right"
                        Margin="0 0 50 0"/>
 
-
-
         </StackPanel>
 
         <StackPanel Grid.Row="1"
@@ -120,14 +118,14 @@
                    Margin="0 10 50 0"
                    Opacity=".7"/>
 
-            <!--
+            
             <TextBlock Text="{Binding MoonPhaseText}"
                        FontSize="20"
                        Foreground="White"
                        FontFamily="Broadway"
                        HorizontalAlignment="Right"
-                       Margin="0 10 40 0"/>
-            -->
+                       Margin="0 10 50 0"/>
+            
 
             <Image Source="/View/Pictures/EarthFromSpaceHD.jpg"
                    Margin="30"
