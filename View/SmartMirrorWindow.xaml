@@ -45,18 +45,13 @@
                        FontFamily="Broadway"
                        Margin="50 50 0 0"/>
 
+            <!--
             <TextBlock Text="Message From Michael:"
                        FontFamily="Broadway"
                        FontSize="20"
                        Foreground="White"
                        Margin="50 50 0 0"/>
-            
-            <TextBlock Text="{Binding MessageFromMichael}"
-                       FontFamily="Broadway"
-                       FontSize="20"
-                       Foreground="White"
-                       Margin="50 10 0 0"
-                       TextWrapping="Wrap"/>
+            -->          
 
         </StackPanel>
 
@@ -70,17 +65,16 @@
                 <Image Source="{Binding WeatherIcon}"
                        Height="100"
                        Width="100"
-                       Margin="0 50 0 0"
-                        />
+                       Margin="0 50 0 0"/>
 
                 <TextBlock Text="{Binding Temp, StringFormat={}{0} °F}"
                        FontSize="40"
                        Foreground="White"
                        FontFamily="Broadway"
-                       Margin="0 85 50 0"
-                       HorizontalAlignment="Right"/>
+                       Margin="0 0 50 20"
+                       VerticalAlignment="Bottom"/>                
 
-            </StackPanel>            
+            </StackPanel>
 
             <TextBlock Text="{Binding Description}"
                        FontSize="30"
@@ -89,11 +83,14 @@
                        Margin="0 0 50 0"
                        HorizontalAlignment="Right"/>
 
-            <Image Source="{Binding AirQualityImage}"
-                   Height="150"
-                   Width="300"
-                   Margin="0 10 50 0"
-                   Opacity=".5"/>
+            <TextBlock Text="{Binding Humidity, StringFormat=Hum {0}%}"
+                       FontSize="20"
+                       FontFamily="Broadway"
+                       Foreground="White"
+                       HorizontalAlignment="Right"
+                       Margin="0 0 50 0"/>
+
+
 
         </StackPanel>
 
@@ -123,14 +120,14 @@
                    Margin="0 10 50 0"
                    Opacity=".7"/>
 
-            
+            <!--
             <TextBlock Text="{Binding MoonPhaseText}"
                        FontSize="20"
                        Foreground="White"
                        FontFamily="Broadway"
                        HorizontalAlignment="Right"
                        Margin="0 10 40 0"/>
-            
+            -->
 
             <Image Source="/View/Pictures/EarthFromSpaceHD.jpg"
                    Margin="30"
@@ -147,9 +144,10 @@
 
         <StackPanel Grid.Row="2"
                     Grid.Column="0"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
-
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom">
+            
+            <!--
             <Image Source="{Binding DogImage}"
                    MaxHeight="300"
                    MaxWidth="400">
@@ -160,8 +158,17 @@
                     </RadialGradientBrush>
                 </Image.OpacityMask>
             </Image>
-            
-            
+            -->
+
+            <TextBlock Text="{Binding MessageFromMichael}"
+                       FontFamily="Broadway"
+                       FontSize="20"
+                       Foreground="White"
+                       Margin="50 0 0 50"
+                       TextWrapping="Wrap"
+                       MaxWidth="400"
+                       />
+
 
         </StackPanel>
 

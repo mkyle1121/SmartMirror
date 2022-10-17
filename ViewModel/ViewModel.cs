@@ -61,6 +61,18 @@ namespace SmartMirror.ViewModel
             }
         }
 
+        private int humidity;
+        public int Humidity
+        {
+            get { return humidity; }
+            set 
+            { 
+                humidity = value;
+                OnPropertyChanged(nameof(Humidity));
+            }
+        }
+
+
         private BitmapImage dogImage;
         public BitmapImage DogImage
         {
@@ -149,17 +161,6 @@ namespace SmartMirror.ViewModel
             }
         }
 
-        private BitmapImage airQualityImage;
-        public BitmapImage AirQualityImage
-        {
-            get { return airQualityImage; }
-            set
-            {
-                airQualityImage = value;
-                OnPropertyChanged(nameof(AirQualityImage));
-            }
-        }
-
 
 
 
@@ -171,7 +172,7 @@ namespace SmartMirror.ViewModel
 
         private void GetCurrentTime()
         {
-            CurrentDateTime = DateTime.Now.ToString("h:mm:ss\r\ndddd, MMMM d");
+            CurrentDateTime = DateTime.Now.ToString("h:mm:ss\r\ndddd\r\nMMMM d");
         }
 
         private async void GetQuotes()
@@ -226,27 +227,6 @@ namespace SmartMirror.ViewModel
             MoonPhaseImage.EndInit();            
         }
 
-        private async void GetAirQuality()
-        {
-            using var client = new HttpClient();
-
-            var moonPhaseRespone = await client.GetStringAsync("https://www.kvue.com/allergy");
-
-            var config = AngleSharp.Configuration.Default;
-            using var context = BrowsingContext.New(config);
-            using var doc = await context.OpenAsync(req => req.Content(moonPhaseRespone));
-
-            var airQualityImageUrl = doc.QuerySelectorAll<IHtmlImageElement>("img")
-                .Where(element => element.ClassName == "weather-maps__hero-image")
-                .FirstOrDefault()
-                .Source;
-
-            AirQualityImage = new BitmapImage();
-            AirQualityImage.BeginInit();
-            AirQualityImage.UriSource = new Uri(airQualityImageUrl);
-            AirQualityImage.EndInit();
-        }
-
         private async void GetMessageFromMichael()
         {
             using (var client = new HttpClient())
@@ -297,6 +277,7 @@ namespace SmartMirror.ViewModel
                     var weatherData = await weatherHelper.GetWeatherAsync();
                     Temp = (int)weatherData.main.temp;
                     Description = weatherData.weather.FirstOrDefault().description;
+                    Humidity = weatherData.main.humidity;
                     var weatherIconUri = $"http://openweathermap.org/img/wn/{weatherData.weather.FirstOrDefault().icon}.png";
                     WeatherIcon = new BitmapImage();
                     WeatherIcon.BeginInit();
@@ -304,7 +285,6 @@ namespace SmartMirror.ViewModel
                     WeatherIcon.EndInit();
 
                     GetQuotes();
-                    GetAirQuality();
                     GetDaysTogether();
                     GetMessageFromMichael();
 
