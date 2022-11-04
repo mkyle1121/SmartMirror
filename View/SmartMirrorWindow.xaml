@@ -26,7 +26,7 @@
             <RowDefinition/>
             <RowDefinition Height="2*"/>
             <RowDefinition/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -43,7 +43,7 @@
                        FontSize="40"
                        Foreground="White"
                        FontFamily="Broadway"
-                       Margin="50 50 0 0"/>
+                       Margin="70 50 0 0"/>
 
             <!--
             <TextBlock Text="Message From Michael:"
@@ -71,7 +71,7 @@
                        FontSize="40"
                        Foreground="White"
                        FontFamily="Broadway"
-                       Margin="0 0 50 20"
+                       Margin="0 0 70 20"
                        VerticalAlignment="Bottom"/>                
 
             </StackPanel>
@@ -80,7 +80,7 @@
                        FontSize="30"
                        Foreground="White"
                        FontFamily="Broadway"
-                       Margin="0 0 50 0"
+                       Margin="0 0 70 0"
                        HorizontalAlignment="Right"/>
 
             <TextBlock Text="{Binding Humidity, StringFormat=Hum {0}%}"
@@ -88,7 +88,7 @@
                        FontFamily="Broadway"
                        Foreground="White"
                        HorizontalAlignment="Right"
-                       Margin="0 0 50 0"/>
+                       Margin="0 0 70 0"/>
 
         </StackPanel>
 
@@ -115,7 +115,7 @@
                    Width="150"
                    Height="150"
                    HorizontalAlignment="Right"
-                   Margin="0 10 50 0"
+                   Margin="0 10 70 0"
                    Opacity=".7"/>
 
             
@@ -124,12 +124,12 @@
                        Foreground="White"
                        FontFamily="Broadway"
                        HorizontalAlignment="Right"
-                       Margin="0 10 50 0"/>
+                       Margin="0 10 70 0"/>
             
 
             <Image Source="/View/Pictures/EarthFromSpaceHD.jpg"
                    Margin="30"
-                   Opacity=".3">
+                   Opacity=".8">
                 <Image.OpacityMask>
                     <RadialGradientBrush>
                         <GradientStop Color="Black"/>
@@ -162,7 +162,7 @@
                        FontFamily="Broadway"
                        FontSize="20"
                        Foreground="White"
-                       Margin="50 0 0 50"
+                       Margin="70 0 0 50"
                        TextWrapping="Wrap"
                        MaxWidth="400"
                        />
@@ -179,14 +179,14 @@
                        Foreground="White"
                        FontFamily="Broadway"
                        FontSize="30"
-                       Margin="0 0 50 0"
+                       Margin="0 0 70 0"
                        HorizontalAlignment="Center"/>
 
             <TextBlock Text="On Our Journey"
                        Foreground="White"
                        FontFamily="Broadway"
                        FontSize="20"
-                       Margin="0 0 50 50"
+                       Margin="0 0 70 50"
                        HorizontalAlignment="Center"/>
 
         </StackPanel>
@@ -202,14 +202,14 @@
                        Text="{Binding CurrentQuote.text}"
                        TextWrapping="Wrap"
                        FontSize="20"
-                       Margin="50 10 50 0"/>
+                       Margin="70 10 70 0"/>
 
             <TextBlock Foreground="White"
                        FontFamily="Broadway"
                        FontSize="20"
                        Text="{Binding CurrentQuote.author, StringFormat=-{0}}"
                        HorizontalAlignment="Right"
-                       Margin="0 0 50 50"/>
+                       Margin="0 0 70 50"/>
 
         </StackPanel>
     </Grid>
