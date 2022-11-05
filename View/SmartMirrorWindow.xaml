@@ -43,15 +43,7 @@
                        FontSize="40"
                        Foreground="White"
                        FontFamily="Broadway"
-                       Margin="70 50 0 0"/>
-
-            <!--
-            <TextBlock Text="Message From Michael:"
-                       FontFamily="Broadway"
-                       FontSize="20"
-                       Foreground="White"
-                       Margin="50 50 0 0"/>
-            -->          
+                       Margin="70 50 0 0"/>                    
 
         </StackPanel>
 
@@ -96,20 +88,7 @@
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
                         VerticalAlignment="Center"
-                        HorizontalAlignment="Center">
-
-            <!--
-            <Image Source="{Binding ApodImage}"
-                    Margin="10"
-                    Opacity=".2">
-                <Image.OpacityMask>
-                    <RadialGradientBrush>
-                        <GradientStop Color="White"/>
-                        <GradientStop Offset="1.01"/>
-                    </RadialGradientBrush>                    
-                </Image.OpacityMask>
-            </Image>
-            -->
+                        HorizontalAlignment="Center">            
 
             <Image Source="{Binding MoonPhaseImage}"
                    Width="150"
@@ -143,30 +122,15 @@
         <StackPanel Grid.Row="2"
                     Grid.Column="0"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Bottom">
+                    VerticalAlignment="Bottom">         
             
-            <!--
-            <Image Source="{Binding DogImage}"
-                   MaxHeight="300"
-                   MaxWidth="400">
-                <Image.OpacityMask>
-                    <RadialGradientBrush>
-                        <GradientStop Color="White"/>
-                        <GradientStop Color="Transparent" Offset="1"/>
-                    </RadialGradientBrush>
-                </Image.OpacityMask>
-            </Image>
-            -->
-
             <TextBlock Text="{Binding MessageFromMichael}"
                        FontFamily="Broadway"
                        FontSize="20"
                        Foreground="White"
                        Margin="70 0 0 50"
                        TextWrapping="Wrap"
-                       MaxWidth="400"
-                       />
-
+                       MaxWidth="400"/>
 
         </StackPanel>
 

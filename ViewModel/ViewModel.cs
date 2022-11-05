@@ -18,8 +18,6 @@ namespace SmartMirror.ViewModel
 		{
             UpdateOneSecondTasks();
             UpdateTenSecondTasks();
-            UpdateThirtyMinuteTasks();
-            UpdateDailyTasks();
         }
 
         private List<Quote> quotes = new List<Quote>();
@@ -71,18 +69,6 @@ namespace SmartMirror.ViewModel
             }
         }
 
-
-        private BitmapImage dogImage;
-        public BitmapImage DogImage
-        {
-            get { return dogImage; }
-            set 
-            {
-                dogImage = value;
-                OnPropertyChanged(nameof(DogImage));
-            }
-        }
-
         private Quote currentQuote;
         public Quote CurrentQuote
         {
@@ -102,17 +88,6 @@ namespace SmartMirror.ViewModel
             {
                 daysTogether = value;
                 OnPropertyChanged(nameof(DaysTogether));
-            }
-        }
-
-        private BitmapImage apodImage;
-        public BitmapImage ApodImage
-        {
-            get { return apodImage; }
-            set
-            {
-                apodImage = value;
-                OnPropertyChanged(nameof(ApodImage));
             }
         }
 
@@ -192,18 +167,7 @@ namespace SmartMirror.ViewModel
         {
             var daysTogetherTimespan = DateTime.Now - new DateTime(2018, 05, 25);
             DaysTogether = (int)daysTogetherTimespan.TotalDays;
-        }
-
-        //private async void GetApodImage()
-        //{
-        //    var apodHelper = new ApodHelper();
-        //    var apod = await apodHelper.GetApodImageAsync();
-
-        //    ApodImage = new BitmapImage();
-        //    ApodImage.BeginInit();
-        //    ApodImage.UriSource = new Uri(apod.HDurl);
-        //    ApodImage.EndInit();          
-        //}
+        }        
 
         private async void GetCurrentMoonPhase()
         {
@@ -234,9 +198,23 @@ namespace SmartMirror.ViewModel
             }
         }
 
+        private async void GetCurrentWeather()
+        {
+            var weatherHelper = new WeatherHelper();
+            var weatherData = await weatherHelper.GetWeatherAsync();
+            Temp = (int)weatherData.main.temp;
+            Description = weatherData.weather.FirstOrDefault().description;
+            Humidity = weatherData.main.humidity;
+            var weatherIconUri = $"http://openweathermap.org/img/wn/{weatherData.weather.FirstOrDefault().icon}.png";
+            WeatherIcon = new BitmapImage();
+            WeatherIcon.BeginInit();
+            WeatherIcon.UriSource = new Uri(weatherIconUri);
+            WeatherIcon.EndInit();
+        }
+
         private void UpdateOneSecondTasks()
         {
-            Task.Run(async () =>
+            dispatcher.Invoke(async () =>
             {
                 while(true)
                 {
@@ -249,57 +227,19 @@ namespace SmartMirror.ViewModel
 
         private void UpdateTenSecondTasks()
         {
-            var dogImageHelper = new DogImageHelper();
-
             dispatcher.Invoke(async () =>
             {
                 while (true)
-                {
-                    var dogImageLocation = await dogImageHelper.GetDogImageAsync();
-                    DogImage = new BitmapImage();
-                    DogImage.BeginInit();
-                    DogImage.UriSource = new Uri(dogImageLocation);
-                    DogImage.EndInit();
+                {                  
+                    GetQuotes();
+                    GetDaysTogether();
+                    GetCurrentWeather();
+                    GetCurrentMoonPhase();
+                    GetMessageFromMichael();
 
                     await Task.Delay(10000);
                 }                
             });
-        }
-
-        private void UpdateThirtyMinuteTasks()
-        {
-            dispatcher.Invoke(async () =>
-            {
-                while (true)
-                {
-                    var weatherHelper = new WeatherHelper();
-                    var weatherData = await weatherHelper.GetWeatherAsync();
-                    Temp = (int)weatherData.main.temp;
-                    Description = weatherData.weather.FirstOrDefault().description;
-                    Humidity = weatherData.main.humidity;
-                    var weatherIconUri = $"http://openweathermap.org/img/wn/{weatherData.weather.FirstOrDefault().icon}.png";
-                    WeatherIcon = new BitmapImage();
-                    WeatherIcon.BeginInit();
-                    WeatherIcon.UriSource = new Uri(weatherIconUri);
-                    WeatherIcon.EndInit();
-
-                    GetQuotes();
-                    GetDaysTogether();
-                    GetMessageFromMichael();
-
-                    await Task.Delay(1800000);
-                }
-            });
-        }
-
-        private void UpdateDailyTasks()
-        {
-            dispatcher.Invoke(async () =>
-            {
-                GetCurrentMoonPhase();
-
-                await Task.Delay(86400000);
-            });
-        }
+        }       
     }
 }
