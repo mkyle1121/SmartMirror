@@ -2,6 +2,7 @@
 using SmartMirror.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -13,14 +14,23 @@ namespace SmartMirror.ViewModel
     {
         private static string quoteApiEndpoint = "https://type.fit/api/quotes";
 
-        public async Task<List<Quote>> GetQuotesAsync()
+        public static async Task<List<Quote>?> GetQuotesAsync()
         {
-            using (var client = new HttpClient())
+            try
             {
+                using var client = new HttpClient();            
                 var quoteResponseJson = await client.GetStringAsync(quoteApiEndpoint);
                 var quoteResponse = JsonConvert.DeserializeObject<List<Quote>>(quoteResponseJson);
                 return quoteResponse;
             }
+            catch (Exception e)
+            {
+                var file = new StreamWriter("smartmirror.log", true);
+                file.WriteLine(e.Message);
+                file.Close();
+                return null;
+            }
+            
         }
     }
 }

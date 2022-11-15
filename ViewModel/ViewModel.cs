@@ -15,14 +15,14 @@ namespace SmartMirror.ViewModel
     public class ViewModel : INotifyPropertyChanged
     {
 		public ViewModel()
-		{
+		{            
             UpdateOneSecondTasks();
             UpdateTenSecondTasks();
+            UpdateThirtyMinuteTasks();
         }
 
         private List<Quote> quotes = new List<Quote>();
         private Dispatcher dispatcher = Dispatcher.CurrentDispatcher;
-        private string messageFromMichaelUri = "https://mikesmartmirror.blob.core.windows.net/messagefrommichael/MessageFromMichael.txt?sp=r&st=2022-10-09T22:16:08Z&se=2032-10-10T06:16:08Z&spr=https&sv=2021-06-08&sr=b&sig=rtOsfhHl60G8uac5hRtx4VAsJPVywD%2F9NIXZvWahhZg%3D";
         public event PropertyChangedEventHandler? PropertyChanged;
 
 		private string currentDateTime;
@@ -150,17 +150,20 @@ namespace SmartMirror.ViewModel
         }
 
         private async void GetQuotes()
-        {
-            var quoteHelper = new QuoteHelper();
-            quotes = await quoteHelper.GetQuotesAsync();
-            GetRandomQuote();
+        {            
+            var response = await QuoteHelper.GetQuotesAsync();
+            if (response != null)
+                quotes = response;
         }
 
         private void GetRandomQuote()
         {
-            var random = new Random();
-            var randomNumber = random.Next(quotes.Count);
-            CurrentQuote = quotes[randomNumber];
+            if (quotes != null)
+            {
+                var random = new Random();
+                var randomNumber = random.Next(quotes.Count);
+                CurrentQuote = quotes[randomNumber];
+            }
         }
 
         private void GetDaysTogether()
@@ -170,46 +173,40 @@ namespace SmartMirror.ViewModel
         }        
 
         private async void GetCurrentMoonPhase()
-        {
-            using var client = new HttpClient();
-
-            var moonPhaseRespone = await client.GetStringAsync("https://phasesmoon.com/");
-
-            var config = Configuration.Default;
-            using var context = BrowsingContext.New(config);
-            using var doc = await context.OpenAsync(req => req.Content(moonPhaseRespone));
-
-            IHtmlImageElement docImages = (IHtmlImageElement)doc.QuerySelectorAll("img").FirstOrDefault();
-
-            MoonPhaseText = docImages.AlternativeText;
-
-            var moonPhaseImageUrl = docImages.Source;      
-            MoonPhaseImage = new BitmapImage();
-            MoonPhaseImage.BeginInit();
-            MoonPhaseImage.UriSource = new Uri(moonPhaseImageUrl);
-            MoonPhaseImage.EndInit();            
+        {            
+            var docImages = await MoonPhaseHelper.GetMoonPhaseAsync();
+            if (docImages != null)
+            {
+                MoonPhaseText = docImages.AlternativeText;
+                var moonPhaseImageUrl = docImages.Source;      
+                MoonPhaseImage = new BitmapImage();
+                MoonPhaseImage.BeginInit();
+                MoonPhaseImage.UriSource = new Uri(moonPhaseImageUrl);
+                MoonPhaseImage.EndInit();            
+            }
         }
 
         private async void GetMessageFromMichael()
         {
-            using (var client = new HttpClient())
-            {
-                MessageFromMichael = await client.GetStringAsync(messageFromMichaelUri);
-            }
+            var response = await MessageFromMichaelHelper.GetMessageFromMichaelAsync();
+            if (response != null)
+                MessageFromMichael = response;
         }
 
         private async void GetCurrentWeather()
-        {
-            var weatherHelper = new WeatherHelper();
-            var weatherData = await weatherHelper.GetWeatherAsync();
-            Temp = (int)weatherData.main.temp;
-            Description = weatherData.weather.FirstOrDefault().description;
-            Humidity = weatherData.main.humidity;
-            var weatherIconUri = $"http://openweathermap.org/img/wn/{weatherData.weather.FirstOrDefault().icon}.png";
-            WeatherIcon = new BitmapImage();
-            WeatherIcon.BeginInit();
-            WeatherIcon.UriSource = new Uri(weatherIconUri);
-            WeatherIcon.EndInit();
+        {            
+            var weatherData = await WeatherHelper.GetWeatherAsync();
+            if (weatherData != null)
+            {
+                Temp = (int)weatherData.main.temp;
+                Description = weatherData.weather.FirstOrDefault().description;
+                Humidity = weatherData.main.humidity;
+                var weatherIconUri = $"http://openweathermap.org/img/wn/{weatherData.weather.FirstOrDefault().icon}.png";
+                WeatherIcon = new BitmapImage();
+                WeatherIcon.BeginInit();
+                WeatherIcon.UriSource = new Uri(weatherIconUri);
+                WeatherIcon.EndInit();
+            }
         }
 
         private void UpdateOneSecondTasks()
@@ -219,7 +216,6 @@ namespace SmartMirror.ViewModel
                 while(true)
                 {
                     GetCurrentTime();
-
                     await Task.Delay(1000);
                 }
             });            
@@ -231,15 +227,27 @@ namespace SmartMirror.ViewModel
             {
                 while (true)
                 {                  
+                    GetRandomQuote();                 
+                    await Task.Delay(10000);
+                }                
+            });
+        }
+
+        private void UpdateThirtyMinuteTasks()
+        {
+            dispatcher.Invoke(async () =>
+            {
+                while (true)
+                {
                     GetQuotes();
                     GetDaysTogether();
                     GetCurrentWeather();
                     GetCurrentMoonPhase();
                     GetMessageFromMichael();
-
-                    await Task.Delay(10000);
-                }                
+                    await Task.Delay(1800000);
+                }
             });
-        }       
+        }
+
     }
 }
