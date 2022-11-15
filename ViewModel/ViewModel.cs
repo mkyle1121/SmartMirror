@@ -153,12 +153,17 @@ namespace SmartMirror.ViewModel
         {            
             var response = await QuoteHelper.GetQuotesAsync();
             if (response != null)
+            {
                 quotes = response;
+                GetRandomQuote();
+            }
+
+            
         }
 
         private void GetRandomQuote()
         {
-            if (quotes != null)
+            if (quotes.Count > 0)
             {
                 var random = new Random();
                 var randomNumber = random.Next(quotes.Count);
