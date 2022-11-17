@@ -24,8 +24,9 @@ namespace SmartMirror.ViewModel
             }
             catch (Exception e)
             {
-                var file = new StreamWriter("smartmirror.log", true);
-                file.WriteLine(e.Message);
+                var logOutputLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "smartmirror.log");
+                var file = new StreamWriter(logOutputLocation, true);
+                file.WriteLine(string.Concat(DateTime.Now, e.Message));
                 file.Close();
                 return null;
             }
