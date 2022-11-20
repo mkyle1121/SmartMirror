@@ -91,17 +91,6 @@ namespace SmartMirror.ViewModel
             }
         }
 
-        private string messageFromMichael;
-        public string MessageFromMichael
-        {
-            get { return messageFromMichael; }
-            set
-            {
-                messageFromMichael = value;
-                OnPropertyChanged(nameof(MessageFromMichael));
-            }
-        }
-
         private BitmapImage weatherIcon;
         public BitmapImage WeatherIcon
         {
@@ -208,13 +197,6 @@ namespace SmartMirror.ViewModel
             TransitPositions = await TransitPositionsHelper.GetTransitPositionsAsync();
         }
 
-        private async void GetMessageFromMichael()
-        {
-            var response = await MessageFromMichaelHelper.GetMessageFromMichaelAsync();
-            if (response != null)
-                MessageFromMichael = response;
-        }
-
         private async void GetCurrentWeather()
         {            
             var weatherData = await WeatherHelper.GetWeatherAsync();
@@ -266,7 +248,6 @@ namespace SmartMirror.ViewModel
                     GetCurrentWeather();
                     GetCurrentMoonPhase();
                     GetTransitPositions();
-                    GetMessageFromMichael();
                     await Task.Delay(1800000);
                 }
             });

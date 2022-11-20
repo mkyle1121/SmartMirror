@@ -10,7 +10,7 @@ namespace SmartMirror.ViewModel
 {
     public class WeatherHelper
     {
-        private static string apiKey = "40421cbe548a05b158f1a3c1c8bb8120";
+        private static string apiKey = WeatherAPIKey.Key;
         private static string weatherApiEndpoint = $"https://api.openweathermap.org/data/2.5/weather?q=Austin,us&units=imperial&appid={apiKey}";
 
         public static async Task<WeatherData?> GetWeatherAsync()

@@ -102,32 +102,23 @@
                         Foreground="White"
                         FontFamily="Broadway"
                         HorizontalAlignment="Right"
-                        Margin="0 10 0 0"/>            
+                        Margin="0 10 0 0"/>
 
             <StackPanel>
-                
-                <!-- Middle Planets -->
-                
-            <Image Source="/View/Pictures/EarthFromSpaceHD.jpg"
+
+                <Image Source="/View/Pictures/EarthFromSpaceHD.jpg"
                    Margin="30"
                    Opacity=".8"
                    Width="500">
-                <Image.OpacityMask>
-                    <RadialGradientBrush>
-                        <GradientStop Color="Black"/>
-                        <GradientStop Color="Transparent" Offset="1"/>
-                    </RadialGradientBrush>
-                </Image.OpacityMask>
-            </Image>
-                
-            </StackPanel>
+                    <Image.OpacityMask>
+                        <RadialGradientBrush>
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="Transparent" Offset="1"/>
+                        </RadialGradientBrush>
+                    </Image.OpacityMask>
+                </Image>
 
-            <StackPanel>
-                
-                <!-- Bottom Planets-->
-                
             </StackPanel>
-
 
         </StackPanel>
 
@@ -141,7 +132,6 @@
                                     Width="250">
                 <FlowDocument>
                     <Table>
-                        
                         <Table.Columns>
                             <TableColumn Width="40"/>
                             <TableColumn/>
@@ -153,7 +143,7 @@
                             <TableRow>
                                 <TableCell>
                                     <Paragraph>
-                                        <Image Source="/View/Pictures/TransitPictures/Planets/sun.gif" Width="20" Height="20"/>                                        
+                                        <Image Source="/View/Pictures/TransitPictures/Planets/sun.gif" Width="20" Height="20"/>
                                     </Paragraph>
                                 </TableCell>
                                 <TableCell>
@@ -284,21 +274,10 @@
                             </TableRow>
 
                         </TableRowGroup>
-                        
+
                     </Table>
                 </FlowDocument>
             </FlowDocumentPageViewer>
-
-            <!-- 
-            
-            <TextBlock Text="{Binding MessageFromMichael}"
-                       FontFamily="Broadway"
-                       FontSize="20"
-                       Foreground="White"
-                       Margin="70 0 0 50"
-                       TextWrapping="Wrap"
-                       MaxWidth="400"/>            
-            -->
 
         </StackPanel>
 

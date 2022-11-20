@@ -115,8 +115,4 @@
     </Resource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="View\Pictures\Planets\" />
-  </ItemGroup>
-
 </Project>
