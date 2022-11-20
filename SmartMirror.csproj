@@ -47,28 +47,72 @@
     <Resource Include="View\Pictures\EarthFromSpaceHD.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="View\Pictures\TransitPictures\Planets\jupiter.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Planets\mars.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Planets\mercury.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Planets\moon.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Planets\neptune.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Planets\pluto.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Planets\saturn.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Planets\sun.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Planets\uranus.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Planets\venus.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Signs\Aquarius.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Signs\Aries.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Signs\Cancer.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Signs\Capricorn.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Signs\Gemini.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Signs\Leo.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Signs\Libra.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Signs\Pisces.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Signs\Sagittarius.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Signs\Scorpio.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Signs\Taurus.gif" />
-    <Resource Include="View\Pictures\TransitPictures\Signs\Virgo.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Planets\jupiter.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Planets\mars.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Planets\mercury.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Planets\moon.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Planets\neptune.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Planets\pluto.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Planets\saturn.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Planets\sun.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Planets\uranus.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Planets\venus.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Signs\Aquarius.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Signs\Aries.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Signs\Cancer.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Signs\Capricorn.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Signs\Gemini.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Signs\Leo.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Signs\Libra.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Signs\Pisces.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Signs\Sagittarius.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Signs\Scorpio.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Signs\Taurus.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Signs\Virgo.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
