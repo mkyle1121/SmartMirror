@@ -15,7 +15,7 @@ namespace SmartMirror.ViewModel
 {
     internal class TransitPositionsHelper
     {
-        private static string[] celestialBodies = new string[10] { "Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto" };
+        private static string[] celestialBodies = new string[10] { "Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto" }; 
         private static string transitPositionsEndpoint = "https://horoscopes.astro-seek.com/current-planets-astrology-transits-planetary-positions";
         private static string imagePath = "/View/Pictures/TransitPictures/Signs";
         private static List<TransitPosition> currentTransitPositions;
