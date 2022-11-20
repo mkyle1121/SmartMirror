@@ -85,30 +85,33 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center">            
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
 
             <Image Source="{Binding MoonPhaseImage}"
-                   Width="150"
-                   Height="150"
-                   HorizontalAlignment="Right"
-                   Margin="0 10 70 0"
-                   Opacity=".7"/>
+                    Width="150"
+                    Height="150"
+                    HorizontalAlignment="Right"
+                    Margin="0 10 0 0"
+                    Opacity=".7"/>
 
-            
             <TextBlock Text="{Binding MoonPhaseText}"
-                       FontSize="20"
-                       Foreground="White"
-                       FontFamily="Broadway"
-                       HorizontalAlignment="Right"
-                       Margin="0 10 70 0"/>
-            
+                        FontSize="20"
+                        Foreground="White"
+                        FontFamily="Broadway"
+                        HorizontalAlignment="Right"
+                        Margin="0 10 0 0"/>            
 
+            <StackPanel>
+                
+                <!-- Middle Planets -->
+                
             <Image Source="/View/Pictures/EarthFromSpaceHD.jpg"
                    Margin="30"
-                   Opacity=".8">
+                   Opacity=".8"
+                   Width="500">
                 <Image.OpacityMask>
                     <RadialGradientBrush>
                         <GradientStop Color="Black"/>
@@ -116,13 +119,177 @@
                     </RadialGradientBrush>
                 </Image.OpacityMask>
             </Image>
+                
+            </StackPanel>
+
+            <StackPanel>
+                
+                <!-- Bottom Planets-->
+                
+            </StackPanel>
+
 
         </StackPanel>
 
         <StackPanel Grid.Row="2"
                     Grid.Column="0"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Bottom">         
+                    VerticalAlignment="Bottom">
+
+            <FlowDocumentPageViewer Margin="70 0 0 0" 
+                                    Height="350"
+                                    Width="250">
+                <FlowDocument>
+                    <Table>
+                        
+                        <Table.Columns>
+                            <TableColumn Width="40"/>
+                            <TableColumn/>
+                        </Table.Columns>
+
+                        <TableRowGroup FontSize="20"
+                                       FontFamily="Broadway"
+                                       Foreground="White">
+                            <TableRow>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="/View/Pictures/TransitPictures/Planets/sun.gif" Width="20" Height="20"/>                                        
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="{Binding TransitPositions.CurrentSunImage}" Width="20" Height="20"/>
+                                        <Run Text="{Binding TransitPositions.CurrentSunDegrees}"/>
+                                    </Paragraph>
+                                </TableCell>
+                            </TableRow>
+
+                            <TableRow>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="/View/Pictures/TransitPictures/Planets/moon.gif" Width="20" Height="20"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="{Binding TransitPositions.CurrentMoonImage}" Width="20" Height="20"/>
+                                        <Run Text="{Binding TransitPositions.CurrentMoonDegrees}"/>
+                                    </Paragraph>
+                                </TableCell>
+                            </TableRow>
+
+                            <TableRow>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="/View/Pictures/TransitPictures/Planets/mercury.gif" Width="20" Height="20"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="{Binding TransitPositions.CurrentMercuryImage}" Width="20" Height="20"/>
+                                        <Run Text="{Binding TransitPositions.CurrentMercuryDegrees}"/>
+                                    </Paragraph>
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="/View/Pictures/TransitPictures/Planets/venus.gif" Width="20" Height="20"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="{Binding TransitPositions.CurrentVenusImage}" Width="20" Height="20"/>
+                                        <Run Text="{Binding TransitPositions.CurrentVenusDegrees}"/>
+                                    </Paragraph>
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="/View/Pictures/TransitPictures/Planets/mars.gif" Width="20" Height="20"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="{Binding TransitPositions.CurrentMarsImage}" Width="20" Height="20"/>
+                                        <Run Text="{Binding TransitPositions.CurrentMarsDegrees}"/>
+                                    </Paragraph>
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="/View/Pictures/TransitPictures/Planets/jupiter.gif" Width="20" Height="20"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="{Binding TransitPositions.CurrentJupiterImage}" Width="20" Height="20"/>
+                                        <Run Text="{Binding TransitPositions.CurrentJupiterDegrees}"/>
+                                    </Paragraph>
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="/View/Pictures/TransitPictures/Planets/saturn.gif" Width="20" Height="20"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="{Binding TransitPositions.CurrentSaturnImage}" Width="20" Height="20"/>
+                                        <Run Text="{Binding TransitPositions.CurrentSaturnDegrees}"/>
+                                    </Paragraph>
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="/View/Pictures/TransitPictures/Planets/uranus.gif" Width="20" Height="20"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="{Binding TransitPositions.CurrentUranusImage}" Width="20" Height="20"/>
+                                        <Run Text="{Binding TransitPositions.CurrentUranusDegrees}"/>
+                                    </Paragraph>
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="/View/Pictures/TransitPictures/Planets/neptune.gif" Width="20" Height="20"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="{Binding TransitPositions.CurrentNeptuneImage}" Width="20" Height="20"/>
+                                        <Run Text="{Binding TransitPositions.CurrentNeptuneDegrees}"/>
+                                    </Paragraph>
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="/View/Pictures/TransitPictures/Planets/pluto.gif" Width="20" Height="20"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Image Source="{Binding TransitPositions.CurrentPlutoImage}" Width="20" Height="20"/>
+                                        <Run Text="{Binding TransitPositions.CurrentPlutoDegrees}"/>
+                                    </Paragraph>
+                                </TableCell>
+                            </TableRow>
+
+                        </TableRowGroup>
+                        
+                    </Table>
+                </FlowDocument>
+            </FlowDocumentPageViewer>
+
+            <!-- 
             
             <TextBlock Text="{Binding MessageFromMichael}"
                        FontFamily="Broadway"
@@ -130,7 +297,8 @@
                        Foreground="White"
                        Margin="70 0 0 50"
                        TextWrapping="Wrap"
-                       MaxWidth="400"/>
+                       MaxWidth="400"/>            
+            -->
 
         </StackPanel>
 

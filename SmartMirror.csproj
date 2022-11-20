@@ -10,6 +10,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="View\Pictures\TransitPictures\Planets\jupiter.gif" />
+    <None Remove="View\Pictures\TransitPictures\Planets\mars.gif" />
+    <None Remove="View\Pictures\TransitPictures\Planets\mercury.gif" />
+    <None Remove="View\Pictures\TransitPictures\Planets\moon.gif" />
+    <None Remove="View\Pictures\TransitPictures\Planets\neptune.gif" />
+    <None Remove="View\Pictures\TransitPictures\Planets\pluto.gif" />
+    <None Remove="View\Pictures\TransitPictures\Planets\saturn.gif" />
+    <None Remove="View\Pictures\TransitPictures\Planets\sun.gif" />
+    <None Remove="View\Pictures\TransitPictures\Planets\uranus.gif" />
+    <None Remove="View\Pictures\TransitPictures\Planets\venus.gif" />
+    <None Remove="View\Pictures\TransitPictures\Signs\Aquarius.gif" />
+    <None Remove="View\Pictures\TransitPictures\Signs\Aries.gif" />
+    <None Remove="View\Pictures\TransitPictures\Signs\Cancer.gif" />
+    <None Remove="View\Pictures\TransitPictures\Signs\Capricorn.gif" />
+    <None Remove="View\Pictures\TransitPictures\Signs\Gemini.gif" />
+    <None Remove="View\Pictures\TransitPictures\Signs\Leo.gif" />
+    <None Remove="View\Pictures\TransitPictures\Signs\Libra.gif" />
+    <None Remove="View\Pictures\TransitPictures\Signs\Pisces.gif" />
+    <None Remove="View\Pictures\TransitPictures\Signs\Sagittarius.gif" />
+    <None Remove="View\Pictures\TransitPictures\Signs\Scorpio.gif" />
+    <None Remove="View\Pictures\TransitPictures\Signs\Taurus.gif" />
+    <None Remove="View\Pictures\TransitPictures\Signs\Virgo.gif" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="SmartMirrorIcon.ico" />
   </ItemGroup>
 
@@ -22,6 +47,32 @@
     <Resource Include="View\Pictures\EarthFromSpaceHD.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="View\Pictures\TransitPictures\Planets\jupiter.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Planets\mars.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Planets\mercury.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Planets\moon.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Planets\neptune.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Planets\pluto.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Planets\saturn.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Planets\sun.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Planets\uranus.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Planets\venus.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Signs\Aquarius.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Signs\Aries.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Signs\Cancer.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Signs\Capricorn.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Signs\Gemini.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Signs\Leo.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Signs\Libra.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Signs\Pisces.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Signs\Sagittarius.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Signs\Scorpio.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Signs\Taurus.gif" />
+    <Resource Include="View\Pictures\TransitPictures\Signs\Virgo.gif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="View\Pictures\Planets\" />
   </ItemGroup>
 
 </Project>

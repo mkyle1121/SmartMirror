@@ -135,6 +135,18 @@ namespace SmartMirror.ViewModel
             }
         }
 
+        private TransitPositions transitPositions;
+        public TransitPositions TransitPositions
+        {
+            get { return transitPositions; }
+            set 
+            {
+                transitPositions = value;
+                OnPropertyChanged(nameof(TransitPositions));
+            }
+        }
+
+
 
 
         private void OnPropertyChanged(string propertyName)
@@ -189,6 +201,11 @@ namespace SmartMirror.ViewModel
                 MoonPhaseImage.UriSource = new Uri(moonPhaseImageUrl);
                 MoonPhaseImage.EndInit();            
             }
+        }
+
+        private async void GetTransitPositions()
+        {
+            TransitPositions = await TransitPositionsHelper.GetTransitPositionsAsync();
         }
 
         private async void GetMessageFromMichael()
@@ -248,6 +265,7 @@ namespace SmartMirror.ViewModel
                     GetDaysTogether();
                     GetCurrentWeather();
                     GetCurrentMoonPhase();
+                    GetTransitPositions();
                     GetMessageFromMichael();
                     await Task.Delay(1800000);
                 }
