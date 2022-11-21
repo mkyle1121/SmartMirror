@@ -183,7 +183,7 @@ namespace SmartMirror.ViewModel
             var docImages = await MoonPhaseHelper.GetMoonPhaseAsync();
             if (docImages != null)
             {
-                MoonPhaseText = docImages.AlternativeText;
+                MoonPhaseText = docImages.AlternativeText.ToLower();
                 var moonPhaseImageUrl = docImages.Source;      
                 MoonPhaseImage = new BitmapImage();
                 MoonPhaseImage.BeginInit();
@@ -194,7 +194,9 @@ namespace SmartMirror.ViewModel
 
         private async void GetTransitPositions()
         {
-            TransitPositions = await TransitPositionsHelper.GetTransitPositionsAsync();
+            var response = await TransitPositionsHelper.GetTransitPositionsAsync();
+            if (response != null)
+                TransitPositions = response;
         }
 
         private async void GetCurrentWeather()
