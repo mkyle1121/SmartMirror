@@ -180,11 +180,11 @@ namespace SmartMirror.ViewModel
 
         private async void GetCurrentMoonPhase()
         {            
-            var docImages = await MoonPhaseHelper.GetMoonPhaseAsync();
-            if (docImages != null)
+            var docImage = await MoonPhaseHelper.GetMoonPhaseAsync();
+            if (docImage != null)
             {
-                MoonPhaseText = docImages.AlternativeText;
-                var moonPhaseImageUrl = docImages.Source;      
+                MoonPhaseText = docImage.AlternativeText;
+                var moonPhaseImageUrl = docImage.Source;      
                 MoonPhaseImage = new BitmapImage();
                 MoonPhaseImage.BeginInit();
                 MoonPhaseImage.UriSource = new Uri(moonPhaseImageUrl);

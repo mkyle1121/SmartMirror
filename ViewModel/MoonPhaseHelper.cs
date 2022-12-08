@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using AngleSharp.Dom;
 
 namespace SmartMirror.ViewModel
 {
@@ -23,8 +24,11 @@ namespace SmartMirror.ViewModel
                 var config = Configuration.Default;
                 using var context = BrowsingContext.New(config);
                 using var doc = await context.OpenAsync(req => req.Content(moonPhaseRespone));
-                var docImages = (IHtmlImageElement)doc.QuerySelectorAll("img").FirstOrDefault();
-                return docImages;
+                //var docImages = (IHtmlImageElement)doc.QuerySelectorAll("img").FirstOrDefault();
+                var docImages = doc.QuerySelectorAll("img");
+                var docImage = (IHtmlImageElement)docImages.FirstOrDefault(docImage => docImage.OuterHtml.Contains("moonpng"));
+
+                return docImage;
             }
             catch (Exception e)
             {
