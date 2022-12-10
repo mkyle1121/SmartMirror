@@ -1,14 +1,11 @@
-﻿using AngleSharp;
-using SmartMirror.Model;
+﻿using SmartMirror.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using AngleSharp.Html.Dom;
 
 namespace SmartMirror.ViewModel
 {
@@ -179,12 +176,12 @@ namespace SmartMirror.ViewModel
         }        
 
         private async void GetCurrentMoonPhase()
-        {            
-            var docImages = await MoonPhaseHelper.GetMoonPhaseAsync();
-            if (docImages != null)
+        {
+            var docImage = await MoonPhaseHelper.GetMoonPhaseAsync();
+            if (docImage != null)
             {
-                MoonPhaseText = docImages.AlternativeText.ToLower();
-                var moonPhaseImageUrl = docImages.Source;      
+                MoonPhaseText = docImage.AlternativeText.ToLower();
+                var moonPhaseImageUrl = docImage.Source;
                 MoonPhaseImage = new BitmapImage();
                 MoonPhaseImage.BeginInit();
                 MoonPhaseImage.UriSource = new Uri(moonPhaseImageUrl);
